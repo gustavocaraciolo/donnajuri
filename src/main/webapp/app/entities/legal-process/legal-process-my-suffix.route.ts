@@ -33,7 +33,7 @@ export const legalProcessRoute: Routes = [
             'pagingParams': LegalProcessMySuffixResolvePagingParams
         },
         data: {
-            authorities: ['ROLE_ADMIN','ROLE_ADVOGADO'],
+            authorities: ['ROLE_ADMIN','ROLE_COORDENADOR','ROLE_ADVOGADO'],
             pageTitle: 'LegalProcesses'
         },
         canActivate: [UserRouteAccessService]
@@ -41,7 +41,7 @@ export const legalProcessRoute: Routes = [
         path: 'legal-process-my-suffix/:id',
         component: LegalProcessMySuffixDetailComponent,
         data: {
-            authorities: ['ROLE_ADMIN','ROLE_ADVOGADO'],
+            authorities: ['ROLE_ADMIN','ROLE_COORDENADOR','ROLE_ADVOGADO'],
             pageTitle: 'LegalProcesses'
         },
         canActivate: [UserRouteAccessService]
@@ -53,7 +53,7 @@ export const legalProcessPopupRoute: Routes = [
         path: 'legal-process-my-suffix-new',
         component: LegalProcessMySuffixPopupComponent,
         data: {
-            authorities: ['ROLE_ADMIN','ROLE_ADVOGADO'],
+            authorities: ['ROLE_ADMIN','ROLE_COORDENADOR','ROLE_ADVOGADO'],
             pageTitle: 'LegalProcesses'
         },
         canActivate: [UserRouteAccessService],
@@ -63,7 +63,7 @@ export const legalProcessPopupRoute: Routes = [
         path: 'legal-process-my-suffix/:id/edit',
         component: LegalProcessMySuffixPopupComponent,
         data: {
-            authorities: ['ROLE_ADMIN','ROLE_ADVOGADO'],
+            authorities: ['ROLE_ADMIN','ROLE_COORDENADOR','ROLE_ADVOGADO'],
             pageTitle: 'LegalProcesses'
         },
         canActivate: [UserRouteAccessService],
@@ -73,7 +73,7 @@ export const legalProcessPopupRoute: Routes = [
         path: 'legal-process-my-suffix/:id/delete',
         component: LegalProcessMySuffixDeletePopupComponent,
         data: {
-            authorities: ['ROLE_ADMIN','ROLE_ADVOGADO'],
+            authorities: ['ROLE_ADMIN','ROLE_COORDENADOR','ROLE_ADVOGADO'],
             pageTitle: 'LegalProcesses'
         },
         canActivate: [UserRouteAccessService],
