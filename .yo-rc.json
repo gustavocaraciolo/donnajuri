@@ -1,0 +1,33 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.br.donna"
+    },
+    "jhipsterVersion": "4.10.2",
+    "baseName": "discovery",
+    "packageName": "com.br.donna",
+    "packageFolder": "com/br/donna",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "hibernateCache": "ehcache",
+    "clusteredHttpSession": false,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSocialSignIn": true,
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "d80a2cb6ea8b86e9fcbdb32f167bac31ab2e7c9c",
+    "clientFramework": "angularX",
+    "useSass": false,
+    "clientPackageManager": "yarn",
+    "applicationType": "monolith",
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "enableTranslation": false
+  }
+}
