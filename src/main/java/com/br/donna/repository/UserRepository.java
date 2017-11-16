@@ -1,5 +1,6 @@
 package com.br.donna.repository;
 
+import com.br.donna.domain.Authority;
 import com.br.donna.domain.User;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
@@ -35,4 +36,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findOneWithAuthoritiesByLogin(String login);
 
     Page<User> findAllByLoginNot(Pageable pageable, String login);
+
+    Page<User> findAllByAuthoritiesEquals(Pageable pageable, Authority authority);
 }

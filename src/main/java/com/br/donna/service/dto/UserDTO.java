@@ -53,6 +53,16 @@ public class UserDTO {
 
     private Set<String> authorities;
 
+    private Long office;
+
+    public Long getOffice() {
+        return office;
+    }
+
+    public void setOffice(Long office) {
+        this.office = office;
+    }
+
     public UserDTO() {
         // Empty constructor needed for Jackson.
     }
@@ -61,6 +71,7 @@ public class UserDTO {
         this(user.getId(), user.getLogin(), user.getFirstName(), user.getLastName(),
             user.getEmail(), user.getActivated(), user.getImageUrl(), user.getLangKey(),
             user.getCreatedBy(), user.getCreatedDate(), user.getLastModifiedBy(), user.getLastModifiedDate(),
+            user.getOffice() != null ? user.getOffice().getId() : null,
             user.getAuthorities().stream().map(Authority::getName)
                 .collect(Collectors.toSet()));
     }
@@ -68,7 +79,7 @@ public class UserDTO {
     public UserDTO(Long id, String login, String firstName, String lastName,
         String email, boolean activated, String imageUrl, String langKey,
         String createdBy, Instant createdDate, String lastModifiedBy, Instant lastModifiedDate,
-        Set<String> authorities) {
+        Long office ,Set<String> authorities) {
 
         this.id = id;
         this.login = login;
@@ -82,6 +93,7 @@ public class UserDTO {
         this.createdDate = createdDate;
         this.lastModifiedBy = lastModifiedBy;
         this.lastModifiedDate = lastModifiedDate;
+        this.office = office;
         this.authorities = authorities;
     }
 

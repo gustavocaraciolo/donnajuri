@@ -1,5 +1,6 @@
 package com.br.donna.web.rest;
 
+import com.br.donna.repository.OfficeRepository;
 import com.codahale.metrics.annotation.Timed;
 
 import com.br.donna.domain.User;
@@ -37,6 +38,8 @@ public class AccountResource {
 
     private final MailService mailService;
 
+
+
     public AccountResource(UserRepository userRepository, UserService userService, MailService mailService) {
 
         this.userRepository = userRepository;
@@ -61,6 +64,7 @@ public class AccountResource {
         }
         userRepository.findOneByLogin(managedUserVM.getLogin().toLowerCase()).ifPresent(u -> {throw new LoginAlreadyUsedException();});
         userRepository.findOneByEmailIgnoreCase(managedUserVM.getEmail()).ifPresent(u -> {throw new EmailAlreadyUsedException();});
+        managedUserVM.setOffice(1L);
         User user = userService.registerUser(managedUserVM);
         mailService.sendActivationEmail(user);
     }

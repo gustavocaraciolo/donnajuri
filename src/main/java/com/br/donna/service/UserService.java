@@ -1,9 +1,11 @@
 package com.br.donna.service;
 
 import com.br.donna.domain.Authority;
+import com.br.donna.domain.Office;
 import com.br.donna.domain.User;
 import com.br.donna.repository.AuthorityRepository;
 import com.br.donna.config.Constants;
+import com.br.donna.repository.OfficeRepository;
 import com.br.donna.repository.UserRepository;
 import com.br.donna.security.AuthoritiesConstants;
 import com.br.donna.security.SecurityUtils;
@@ -47,12 +49,16 @@ public class UserService {
 
     private final CacheManager cacheManager;
 
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, SocialService socialService, AuthorityRepository authorityRepository, CacheManager cacheManager) {
+    private final OfficeRepository officeRepository;
+
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, SocialService socialService, AuthorityRepository authorityRepository, CacheManager cacheManager,
+                       OfficeRepository officeRepository) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.socialService = socialService;
         this.authorityRepository = authorityRepository;
         this.cacheManager = cacheManager;
+        this.officeRepository = officeRepository;
     }
 
     public Optional<User> activateRegistration(String key) {
@@ -112,6 +118,7 @@ public class UserService {
         // new user gets registration key
         newUser.setActivationKey(RandomUtil.generateActivationKey());
         authorities.add(authority);
+        newUser.setOffice(officeRepository.findOne(userDTO.getOffice()));
         newUser.setAuthorities(authorities);
         userRepository.save(newUser);
         log.debug("Created Information for User: {}", newUser);
@@ -135,6 +142,10 @@ public class UserService {
                 .map(authorityRepository::findOne)
                 .collect(Collectors.toSet());
             user.setAuthorities(authorities);
+        }
+        if(userDTO.getOffice() != null) {
+            Office office = officeRepository.findOne(userDTO.getOffice());
+            user.setOffice(office);
         }
         String encryptedPassword = passwordEncoder.encode(RandomUtil.generatePassword());
         user.setPassword(encryptedPassword);
@@ -233,7 +244,10 @@ public class UserService {
     public User getUserWithAuthorities() {
         return userRepository.findOneWithAuthoritiesByLogin(SecurityUtils.getCurrentUserLogin()).orElse(null);
     }
-
+    @Transactional(readOnly = true)
+    public Page<UserDTO> getAllManagedUsersByAuthority(Pageable pageable, String authority) {
+        return userRepository.findAllByAuthoritiesEquals(pageable, authorityRepository.findOne(authority)).map(UserDTO::new);
+    }
     /**
      * Not activated users should be automatically deleted after 3 days.
      * <p>

@@ -2,7 +2,10 @@ package com.br.donna.web.rest;
 
 import com.br.donna.DiscoveryApp;
 import com.br.donna.domain.Authority;
+import com.br.donna.domain.Lawyer;
+import com.br.donna.domain.Office;
 import com.br.donna.domain.User;
+import com.br.donna.repository.OfficeRepository;
 import com.br.donna.repository.UserRepository;
 import com.br.donna.security.AuthoritiesConstants;
 import com.br.donna.service.MailService;
@@ -75,6 +78,9 @@ public class UserResourceIntTest {
     private UserRepository userRepository;
 
     @Autowired
+    private OfficeRepository officeRepository;
+
+    @Autowired
     private MailService mailService;
 
     @Autowired
@@ -126,7 +132,15 @@ public class UserResourceIntTest {
         user.setLastName(DEFAULT_LASTNAME);
         user.setImageUrl(DEFAULT_IMAGEURL);
         user.setLangKey(DEFAULT_LANGKEY);
+
         return user;
+    }
+
+    public Long getOfficeId() {
+        Office office = OfficeResourceIntTest.createEntity(em);
+        em.persist(office);
+        em.flush();
+        return office.getId();
     }
 
     @Before
@@ -144,6 +158,7 @@ public class UserResourceIntTest {
         // Create the User
         Set<String> authorities = new HashSet<>();
         authorities.add(AuthoritiesConstants.USER);
+
         ManagedUserVM managedUserVM = new ManagedUserVM(
             null,
             DEFAULT_LOGIN,
@@ -158,6 +173,7 @@ public class UserResourceIntTest {
             null,
             null,
             null,
+            getOfficeId(),
             authorities);
 
         restUserMockMvc.perform(post("/api/users")
@@ -198,6 +214,7 @@ public class UserResourceIntTest {
             null,
             null,
             null,
+            getOfficeId(),
             authorities);
 
         // An entity with an existing ID cannot be created, so this API call must fail
@@ -234,6 +251,7 @@ public class UserResourceIntTest {
             null,
             null,
             null,
+            getOfficeId(),
             authorities);
 
         // Create the User
@@ -270,6 +288,7 @@ public class UserResourceIntTest {
             null,
             null,
             null,
+            getOfficeId(),
             authorities);
 
         // Create the User
@@ -353,6 +372,7 @@ public class UserResourceIntTest {
             updatedUser.getCreatedDate(),
             updatedUser.getLastModifiedBy(),
             updatedUser.getLastModifiedDate(),
+            updatedUser.getOffice().getId(),
             authorities);
 
         restUserMockMvc.perform(put("/api/users")
@@ -397,6 +417,7 @@ public class UserResourceIntTest {
             updatedUser.getCreatedDate(),
             updatedUser.getLastModifiedBy(),
             updatedUser.getLastModifiedDate(),
+            updatedUser.getOffice().getId(),
             authorities);
 
         restUserMockMvc.perform(put("/api/users")
@@ -452,6 +473,7 @@ public class UserResourceIntTest {
             updatedUser.getCreatedDate(),
             updatedUser.getLastModifiedBy(),
             updatedUser.getLastModifiedDate(),
+            updatedUser.getOffice().getId(),
             authorities);
 
         restUserMockMvc.perform(put("/api/users")
@@ -496,6 +518,7 @@ public class UserResourceIntTest {
             updatedUser.getCreatedDate(),
             updatedUser.getLastModifiedBy(),
             updatedUser.getLastModifiedDate(),
+            updatedUser.getOffice().getId(),
             authorities);
 
         restUserMockMvc.perform(put("/api/users")
@@ -569,6 +592,7 @@ public class UserResourceIntTest {
             null,
             DEFAULT_LOGIN,
             null,
+            getOfficeId(),
             Stream.of(AuthoritiesConstants.USER).collect(Collectors.toSet()));
         User user = userMapper.userDTOToUser(userDTO);
         assertThat(user.getId()).isEqualTo(DEFAULT_ID);
