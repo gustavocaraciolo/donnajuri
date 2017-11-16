@@ -33,7 +33,7 @@ export const officeRoute: Routes = [
             'pagingParams': OfficeMySuffixResolvePagingParams
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_ADMIN'],
             pageTitle: 'Offices'
         },
         canActivate: [UserRouteAccessService]
@@ -41,7 +41,7 @@ export const officeRoute: Routes = [
         path: 'office-my-suffix/:id',
         component: OfficeMySuffixDetailComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_ADMIN'],
             pageTitle: 'Offices'
         },
         canActivate: [UserRouteAccessService]
@@ -53,7 +53,7 @@ export const officePopupRoute: Routes = [
         path: 'office-my-suffix-new',
         component: OfficeMySuffixPopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_ADMIN'],
             pageTitle: 'Offices'
         },
         canActivate: [UserRouteAccessService],
@@ -63,7 +63,7 @@ export const officePopupRoute: Routes = [
         path: 'office-my-suffix/:id/edit',
         component: OfficeMySuffixPopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_ADMIN'],
             pageTitle: 'Offices'
         },
         canActivate: [UserRouteAccessService],
@@ -73,7 +73,7 @@ export const officePopupRoute: Routes = [
         path: 'office-my-suffix/:id/delete',
         component: OfficeMySuffixDeletePopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_ADMIN'],
             pageTitle: 'Offices'
         },
         canActivate: [UserRouteAccessService],
