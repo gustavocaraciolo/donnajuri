@@ -1,0 +1,33 @@
+entity Office{
+    name String required,
+    phone String,
+    email String
+}
+
+entity Lawyer{
+    fullname String required,
+    email String required
+    phone String
+}
+
+entity LegalProcess{
+    number String required,
+    status Status,
+    adversy_part String
+}
+
+enum Status {
+    PENDENTE,
+    PERDIDO,
+    REALIZADO,
+    REALIZANDO
+}
+
+relationship ManyToMany{
+    LegalProcess{lawyer required} to Lawyer{legalProcess required}
+}
+
+paginate all with pagination
+dto * with mapstruct
+service all with serviceImpl
+angularSuffix * with mySuffix
