@@ -42,6 +42,11 @@ public class CacheConfiguration {
             cm.createCache(com.br.donna.domain.Authority.class.getName(), jcacheConfiguration);
             cm.createCache(com.br.donna.domain.User.class.getName() + ".authorities", jcacheConfiguration);
             cm.createCache(com.br.donna.domain.SocialUserConnection.class.getName(), jcacheConfiguration);
+            cm.createCache(com.br.donna.domain.Office.class.getName(), jcacheConfiguration);
+            cm.createCache(com.br.donna.domain.Lawyer.class.getName(), jcacheConfiguration);
+            cm.createCache(com.br.donna.domain.Lawyer.class.getName() + ".legalProcesses", jcacheConfiguration);
+            cm.createCache(com.br.donna.domain.LegalProcess.class.getName(), jcacheConfiguration);
+            cm.createCache(com.br.donna.domain.LegalProcess.class.getName() + ".lawyers", jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

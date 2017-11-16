@@ -1,0 +1,62 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myLegalProcessLabel">Create or edit a Legal Process</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!legalProcess.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="legalProcess.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_number">Number</label>
+            <input type="text" class="form-control" name="number" id="field_number"
+                [(ngModel)]="legalProcess.number" required />
+            <div [hidden]="!(editForm.controls.number?.dirty && editForm.controls.number?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.number?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_status">Status</label>
+            <select class="form-control" name="status" [(ngModel)]="legalProcess.status" id="field_status" >
+                <option value="PENDENTE">PENDENTE</option>
+                <option value="PERDIDO">PERDIDO</option>
+                <option value="REALIZADO">REALIZADO</option>
+                <option value="REALIZANDO">REALIZANDO</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_adversypart">Adversypart</label>
+            <input type="text" class="form-control" name="adversypart" id="field_adversypart"
+                [(ngModel)]="legalProcess.adversypart"  />
+        </div>
+
+        <div class="form-group">
+            <label for="field_lawyer">Lawyer</label>
+            <select class="form-control" id="field_lawyer" multiple name="lawyer" [(ngModel)]="legalProcess.lawyers" required>
+                <option [ngValue]="getSelected(legalProcess.lawyers, lawyerOption)" *ngFor="let lawyerOption of lawyers; trackBy: trackLawyerById">{{lawyerOption.id}}</option>
+            </select>
+        </div>
+        <div [hidden]="!(editForm.controls.lawyer?.dirty && editForm.controls.lawyer?.invalid)">
+            <small class="form-text text-danger"
+                [hidden]="!editForm.controls.lawyer?.errors?.required">
+                This field is required.
+            </small>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

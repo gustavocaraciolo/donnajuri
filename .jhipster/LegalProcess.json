@@ -1,0 +1,39 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-many",
+            "relationshipValidateRules": "required",
+            "otherEntityRelationshipName": "legalProcess",
+            "relationshipName": "lawyer",
+            "otherEntityName": "lawyer",
+            "otherEntityField": "id",
+            "ownerSide": true
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "number",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "Status",
+            "fieldValues": "PENDENTE,PERDIDO,REALIZADO,REALIZANDO"
+        },
+        {
+            "fieldName": "adversypart",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20171116102101",
+    "entityTableName": "legal_process",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "angularJSSuffix": "mySuffix"
+}
