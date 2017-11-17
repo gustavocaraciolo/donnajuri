@@ -41,7 +41,7 @@
         <div class="form-group">
             <label for="field_lawyer">Lawyer</label>
             <select class="form-control" id="field_lawyer" multiple name="lawyer" [(ngModel)]="legalProcess.lawyers" required>
-                <option [ngValue]="getSelected(legalProcess.lawyers, lawyerOption)" *ngFor="let lawyerOption of lawyers; trackBy: trackLawyerById">{{lawyerOption.id}}</option>
+                <option [ngValue]="getSelected(legalProcess.lawyers, lawyerOption)" *ngFor="let lawyerOption of lawyers; trackBy: trackLawyerById">{{lawyerOption.fullname}}</option>
             </select>
         </div>
         <div [hidden]="!(editForm.controls.lawyer?.dirty && editForm.controls.lawyer?.invalid)">
