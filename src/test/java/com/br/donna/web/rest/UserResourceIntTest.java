@@ -2,7 +2,6 @@ package com.br.donna.web.rest;
 
 import com.br.donna.DiscoveryApp;
 import com.br.donna.domain.Authority;
-import com.br.donna.domain.Lawyer;
 import com.br.donna.domain.Office;
 import com.br.donna.domain.User;
 import com.br.donna.repository.OfficeRepository;

@@ -8,12 +8,12 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity LegalProcess and its DTO LegalProcessDTO.
  */
-@Mapper(componentModel = "spring", uses = {LawyerMapper.class})
+@Mapper(componentModel = "spring", uses = {UserMapper.class})
 public interface LegalProcessMapper extends EntityMapper<LegalProcessDTO, LegalProcess> {
 
-    
 
-    
+
+
 
     default LegalProcess fromId(Long id) {
         if (id == null) {

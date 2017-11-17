@@ -98,6 +98,12 @@ public class User extends AbstractAuditingEntity implements Serializable {
     @JoinColumn(name = "office_id")
     private Office office;
 
+    @JsonIgnore
+    @ManyToMany(mappedBy = "user")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @BatchSize(size = 20)
+    private Set<LegalProcess> legalProcesses = new HashSet<>();
+
     public Office getOffice() {
         return office;
     }
@@ -213,6 +219,14 @@ public class User extends AbstractAuditingEntity implements Serializable {
 
     public void addAuthority(Authority authority) {
         this.authorities.add(authority);
+    }
+
+    public Set<LegalProcess> getLegalProcesses() {
+        return legalProcesses;
+    }
+
+    public void setLegalProcesses(Set<LegalProcess> legalProcesses) {
+        this.legalProcesses = legalProcesses;
     }
 
     @Override

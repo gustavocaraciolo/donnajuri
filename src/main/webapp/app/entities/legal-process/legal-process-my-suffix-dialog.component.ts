@@ -9,7 +9,7 @@ import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 import { LegalProcessMySuffix } from './legal-process-my-suffix.model';
 import { LegalProcessMySuffixPopupService } from './legal-process-my-suffix-popup.service';
 import { LegalProcessMySuffixService } from './legal-process-my-suffix.service';
-import { LawyerMySuffix, LawyerMySuffixService } from '../lawyer';
+import { User, UserService } from '../../shared';
 import { ResponseWrapper } from '../../shared';
 
 @Component({
@@ -21,20 +21,20 @@ export class LegalProcessMySuffixDialogComponent implements OnInit {
     legalProcess: LegalProcessMySuffix;
     isSaving: boolean;
 
-    lawyers: LawyerMySuffix[];
+    lawyers: User[];
 
     constructor(
         public activeModal: NgbActiveModal,
         private jhiAlertService: JhiAlertService,
         private legalProcessService: LegalProcessMySuffixService,
-        private lawyerService: LawyerMySuffixService,
+        private userService: UserService,
         private eventManager: JhiEventManager
     ) {
     }
 
     ngOnInit() {
         this.isSaving = false;
-        this.lawyerService.query()
+        this.userService.query()
             .subscribe((res: ResponseWrapper) => { this.lawyers = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
     }
 
@@ -72,7 +72,7 @@ export class LegalProcessMySuffixDialogComponent implements OnInit {
         this.jhiAlertService.error(error.message, null, null);
     }
 
-    trackLawyerById(index: number, item: LawyerMySuffix) {
+    trackLawyerById(index: number, item: User) {
         return item.id;
     }
 

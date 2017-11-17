@@ -38,12 +38,7 @@ public class LegalProcess implements Serializable {
     private String adversypart;
 
     @ManyToMany
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    @NotNull
-    @JoinTable(name = "legal_process_lawyer",
-               joinColumns = @JoinColumn(name="legal_processes_id", referencedColumnName="id"),
-               inverseJoinColumns = @JoinColumn(name="lawyers_id", referencedColumnName="id"))
-    private Set<Lawyer> lawyers = new HashSet<>();
+    private Set<User> user = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -93,29 +88,29 @@ public class LegalProcess implements Serializable {
         this.adversypart = adversypart;
     }
 
-    public Set<Lawyer> getLawyers() {
-        return lawyers;
+    public Set<User> getUser() {
+        return user;
     }
 
-    public LegalProcess lawyers(Set<Lawyer> lawyers) {
-        this.lawyers = lawyers;
+    public LegalProcess user(Set<User> user) {
+        this.user = user;
         return this;
     }
 
-    public LegalProcess addLawyer(Lawyer lawyer) {
-        this.lawyers.add(lawyer);
-        lawyer.getLegalProcesses().add(this);
+    public LegalProcess addUser(User user) {
+        this.user.add(user);
+        user.getLegalProcesses().add(this);
         return this;
     }
 
-    public LegalProcess removeLawyer(Lawyer lawyer) {
-        this.lawyers.remove(lawyer);
-        lawyer.getLegalProcesses().remove(this);
+    public LegalProcess removeUser(User user) {
+        this.user.remove(user);
+        user.getLegalProcesses().remove(this);
         return this;
     }
 
-    public void setLawyers(Set<Lawyer> lawyers) {
-        this.lawyers = lawyers;
+    public void setUser(Set<User> user) {
+        this.user = user;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

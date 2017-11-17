@@ -2,9 +2,12 @@ package com.br.donna.web.rest;
 
 import com.br.donna.DiscoveryApp;
 
+import com.br.donna.domain.Authority;
 import com.br.donna.domain.LegalProcess;
-import com.br.donna.domain.Lawyer;
+import com.br.donna.domain.User;
+import com.br.donna.repository.AuthorityRepository;
 import com.br.donna.repository.LegalProcessRepository;
+import com.br.donna.security.AuthoritiesConstants;
 import com.br.donna.service.LegalProcessService;
 import com.br.donna.service.dto.LegalProcessDTO;
 import com.br.donna.service.mapper.LegalProcessMapper;
@@ -25,7 +28,9 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static com.br.donna.web.rest.TestUtil.createFormattingConversionService;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -71,6 +76,9 @@ public class LegalProcessResourceIntTest {
     private ExceptionTranslator exceptionTranslator;
 
     @Autowired
+    private static AuthorityRepository authorityRepository;
+
+    @Autowired
     private EntityManager em;
 
     private MockMvc restLegalProcessMockMvc;
@@ -100,10 +108,14 @@ public class LegalProcessResourceIntTest {
             .status(DEFAULT_STATUS)
             .adversypart(DEFAULT_ADVERSYPART);
         // Add required entity
-        Lawyer lawyer = LawyerResourceIntTest.createEntity(em);
+
+        User lawyer = UserResourceIntTest.createEntity(em);
+        Set<Authority> authorities = new HashSet<>(1);
+        authorities.add(authorityRepository.findOne(AuthoritiesConstants.ADVOGADO));
+        lawyer.setAuthorities(authorities);
         em.persist(lawyer);
         em.flush();
-        legalProcess.getLawyers().add(lawyer);
+        legalProcess.getUser().add(lawyer);
         return legalProcess;
     }
 

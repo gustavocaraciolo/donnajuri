@@ -22,7 +22,7 @@ public class LegalProcessDTO implements Serializable {
 
     private String adversypart;
 
-    private Set<LawyerDTO> lawyers = new HashSet<>();
+    private Set<UserDTO> lawyers = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -56,11 +56,11 @@ public class LegalProcessDTO implements Serializable {
         this.adversypart = adversypart;
     }
 
-    public Set<LawyerDTO> getLawyers() {
+    public Set<UserDTO> getLawyers() {
         return lawyers;
     }
 
-    public void setLawyers(Set<LawyerDTO> lawyers) {
+    public void setLawyers(Set<UserDTO> lawyers) {
         this.lawyers = lawyers;
     }
 

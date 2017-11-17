@@ -13,10 +13,10 @@ import java.util.List;
 @SuppressWarnings("unused")
 @Repository
 public interface LegalProcessRepository extends JpaRepository<LegalProcess, Long> {
-    @Query("select distinct legal_process from LegalProcess legal_process left join fetch legal_process.lawyers")
+    @Query("select distinct legal_process from LegalProcess legal_process left join fetch legal_process.user")
     List<LegalProcess> findAllWithEagerRelationships();
 
-    @Query("select legal_process from LegalProcess legal_process left join fetch legal_process.lawyers where legal_process.id =:id")
+    @Query("select legal_process from LegalProcess legal_process left join fetch legal_process.user where legal_process.id =:id")
     LegalProcess findOneWithEagerRelationships(@Param("id") Long id);
 
 }

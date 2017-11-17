@@ -35,12 +35,6 @@
                             <span>Office My Suffix</span>
                         </a>
                     </li>
-                    <li *jhiHasAnyAuthority="['ROLE_ADMIN','ROLE_COORDENADOR']">
-                        <a class="dropdown-item" routerLink="lawyer-my-suffix" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Lawyer My Suffix</span>
-                        </a>
-                    </li>
                     <li *jhiHasAnyAuthority="['ROLE_ADMIN','ROLE_COORDENADOR', 'ROLE_ADVOGADO']">
                         <a class="dropdown-item" routerLink="legal-process-my-suffix" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
