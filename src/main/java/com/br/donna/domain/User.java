@@ -98,10 +98,7 @@ public class User extends AbstractAuditingEntity implements Serializable {
     @JoinColumn(name = "office_id")
     private Office office;
 
-    @JsonIgnore
-    @ManyToMany(mappedBy = "user")
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    @BatchSize(size = 20)
+    @ManyToMany
     private Set<LegalProcess> legalProcesses = new HashSet<>();
 
     public Office getOffice() {

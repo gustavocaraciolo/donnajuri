@@ -73,6 +73,15 @@
             </column>
         </createTable>
 
+        <createTable tableName="legal_process_lawyer">
+            <column name="legal_process_lawyer_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="legal_process_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
         <createTable tableName="office">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
@@ -109,6 +118,11 @@
                                  constraintName="fk_jhi_user_office"
                                  referencedColumnNames="id"
                                  referencedTableName="office"/>
+        <addForeignKeyConstraint baseColumnNames="legal_process_lawyer_id"
+                                 baseTableName="jhi_user"
+                                 constraintName="fk_jhi_user_legal_process_lawyer"
+                                 referencedColumnNames="id"
+                                 referencedTableName="legal_process"/>
         <loadData encoding="UTF-8"
                   file="config/liquibase/users.csv"
                   separator=";"

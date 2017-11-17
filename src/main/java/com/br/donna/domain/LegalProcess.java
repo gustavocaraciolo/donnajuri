@@ -38,6 +38,10 @@ public class LegalProcess implements Serializable {
     private String adversypart;
 
     @ManyToMany
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @JoinTable(name = "legal_process_lawyer",
+        joinColumns = @JoinColumn(name="legal_process_lawyer_id", referencedColumnName="id"),
+        inverseJoinColumns = @JoinColumn(name="legal_process_id", referencedColumnName="id"))
     private Set<User> user = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove

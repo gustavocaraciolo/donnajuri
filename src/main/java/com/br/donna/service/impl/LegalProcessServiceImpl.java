@@ -69,7 +69,7 @@ public class LegalProcessServiceImpl implements LegalProcessService{
     @Transactional(readOnly = true)
     public LegalProcessDTO findOne(Long id) {
         log.debug("Request to get LegalProcess : {}", id);
-        LegalProcess legalProcess = legalProcessRepository.findOneWithEagerRelationships(id);
+        LegalProcess legalProcess = legalProcessRepository.findOne(id);
         return legalProcessMapper.toDto(legalProcess);
     }
 

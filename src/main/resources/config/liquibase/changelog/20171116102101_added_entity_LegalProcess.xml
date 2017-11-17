@@ -36,18 +36,7 @@
 
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
-        
-        <createTable tableName="legal_process_lawyer">
-            <column name="lawyers_id" type="bigint">
-                <constraints nullable="false"/>
-            </column>
-            <column name="legal_processes_id" type="bigint">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
 
-        <addPrimaryKey columnNames="legal_processes_id, lawyers_id" tableName="legal_process_lawyer"/>
-        
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
 </databaseChangeLog>
