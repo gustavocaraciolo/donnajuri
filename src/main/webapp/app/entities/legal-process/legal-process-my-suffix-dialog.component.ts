@@ -34,7 +34,7 @@ export class LegalProcessMySuffixDialogComponent implements OnInit {
 
     ngOnInit() {
         this.isSaving = false;
-        this.userService.query()
+        this.userService.findByAuthority('ROLE_COORDENADOR')
             .subscribe((res: ResponseWrapper) => { this.lawyers = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
     }
 
