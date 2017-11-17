@@ -33,7 +33,7 @@ export const lawyerRoute: Routes = [
             'pagingParams': LawyerMySuffixResolvePagingParams
         },
         data: {
-            authorities: ['ROLE_ADMIN','ROLE_COORDENADOR'],
+            authorities: ['ROLE_ADMIN', 'ROLE_COORDENADOR'],
             pageTitle: 'Lawyers'
         },
         canActivate: [UserRouteAccessService]
@@ -41,7 +41,7 @@ export const lawyerRoute: Routes = [
         path: 'lawyer-my-suffix/:id',
         component: LawyerMySuffixDetailComponent,
         data: {
-            authorities: ['ROLE_ADMIN','ROLE_COORDENADOR'],
+            authorities: ['ROLE_ADMIN', 'ROLE_COORDENADOR'],
             pageTitle: 'Lawyers'
         },
         canActivate: [UserRouteAccessService]
@@ -53,7 +53,7 @@ export const lawyerPopupRoute: Routes = [
         path: 'lawyer-my-suffix-new',
         component: LawyerMySuffixPopupComponent,
         data: {
-            authorities: ['ROLE_ADMIN','ROLE_COORDENADOR'],
+            authorities: ['ROLE_ADMIN', 'ROLE_COORDENADOR'],
             pageTitle: 'Lawyers'
         },
         canActivate: [UserRouteAccessService],
@@ -63,7 +63,7 @@ export const lawyerPopupRoute: Routes = [
         path: 'lawyer-my-suffix/:id/edit',
         component: LawyerMySuffixPopupComponent,
         data: {
-            authorities: ['ROLE_ADMIN','ROLE_COORDENADOR'],
+            authorities: ['ROLE_ADMIN', 'ROLE_COORDENADOR'],
             pageTitle: 'Lawyers'
         },
         canActivate: [UserRouteAccessService],
@@ -73,7 +73,7 @@ export const lawyerPopupRoute: Routes = [
         path: 'lawyer-my-suffix/:id/delete',
         component: LawyerMySuffixDeletePopupComponent,
         data: {
-            authorities: ['ROLE_ADMIN','ROLE_COORDENADOR'],
+            authorities: ['ROLE_ADMIN', 'ROLE_COORDENADOR'],
             pageTitle: 'Lawyers'
         },
         canActivate: [UserRouteAccessService],
